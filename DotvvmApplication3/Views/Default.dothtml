@@ -1,0 +1,57 @@
+﻿@viewModel DotvvmApplication3.ViewModels.DefaultViewModel, DotvvmApplication3
+@masterPage Views/MasterPage.dotmaster
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <div class="content">
+
+        <img src="/Resources/Images/tree.svg" class="content__background-image content__background-image--left" />
+
+        <a href="https://www.dotvvm.com/" target="_blank">
+            <img src="/Resources/Images/text.svg" class="content__image" />
+        </a>
+        <div class="content__text">
+            <h1>GridView</h1>
+
+            <dot:GridView DataSource="{value: _root.DataGridView}">
+                <dot:GridViewTemplateColumn>
+                    <dot:CheckBox Changed="{command: _root.CheckBoxChanged()}"
+                                  CheckedItems="{value: _root.DataGridViewCheckedItems}"
+                                  CheckedValue="{value: _this.Id}"
+                                  Text="" />
+                </dot:GridViewTemplateColumn>
+                <dot:GridViewTextColumn ValueBinding="{value: _this.Name}" />
+            </dot:GridView>
+            <dot:DataPager DataSet="{value: _root.DataGridView}" class="pager" />
+
+            <h1>Repeater</h1>
+            <dot:Repeater DataSource="{value: _root.DataRepeater}">
+                <div>
+                    <dot:CheckBox Changed="{command: _root.CheckBoxChanged()}"
+                                  CheckedItems="{value: _root.DataRepeaterCheckedItems}"
+                                  CheckedValue="{value: _this.Id}"
+                                  Text="" />
+                    <dot:Literal Text="{value: _this.Name}" />
+                </div>
+            </dot:Repeater>
+            <dot:DataPager DataSet="{value: _root.DataRepeater}" class="pager" />
+
+            <h1>GridView with ItemKeyBinding</h1>
+
+            <dot:GridView DataSource="{value: _root.DataGridViewKey}">
+                <dot:GridViewTemplateColumn>
+                    <dot:CheckBox Changed="{command: _root.CheckBoxChanged()}"
+                                  CheckedItems="{value: _root.DataGridViewKeyCheckedItems}"
+                                  CheckedValue="{value: _this}"
+                                  ItemKeyBinding="{value: _this.Id}"
+                                  Text="" />
+                </dot:GridViewTemplateColumn>
+                <dot:GridViewTextColumn ValueBinding="{value: _this.Name}" />
+            </dot:GridView>
+            <dot:DataPager DataSet="{value: _root.DataGridViewKey}" class="pager" />
+        </div>
+
+        <img src="/Resources/Images/tree.svg" class="content__background-image content__background-image content__background-image--right" />
+
+
+    </div>
+</dot:Content>
